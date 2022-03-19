@@ -9,7 +9,7 @@ class Genre extends ActiveRecord
 
     public static function tableName()
     {
-        return '{{genre}}';
+        return 'genre';
     }
 
     public function rules()

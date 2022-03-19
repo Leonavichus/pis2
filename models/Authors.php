@@ -9,7 +9,7 @@ class Authors extends ActiveRecord
 
     public static function tableName()
     {
-        return '{{authors}}';
+        return 'authors';
     }
 
     public function getBooks()

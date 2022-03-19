@@ -11,7 +11,7 @@ class Books extends ActiveRecord
 
     public static function tableName()
     {
-        return '{{books}}';
+        return 'books';
     }
 
     public function rules()
