@@ -11,7 +11,7 @@ class AppAdminController extends Controller
     {
         return
             [
-                'acccess' => [
+                'access' => [
                     'class' => AccessControl::className(),
                     'rules' => [
                         'allow' => true,
