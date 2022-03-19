@@ -2,7 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
-use yii\web\Controller;
+use app\modules\admin\controllers\AppAdminController;
 
 /**
  * Default controller for the `admin` module
