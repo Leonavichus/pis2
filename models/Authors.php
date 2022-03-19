@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use yii\db\ActiveRecord;
@@ -11,27 +12,16 @@ class Authors extends ActiveRecord
         return '{{authors}}';
     }
 
-    public function getBooks(){
-        return $this->hasMany(Books::className(),['id_a' => 'id_authors']);
+    public function getBooks()
+    {
+        return $this->hasMany(Books::className(), ['id_a' => 'id_authors']);
     }
 
     public function rules()
     {
-        return[
-            [['surname', 'name'], 'required'],
+        return [
+            [['surname', 'name', 'birthday'], 'required'],
             [['birthday', 'date_death'], 'date', 'format' => 'php:Y-m-d']
-        ];
-    }
-    
-    public function attributeLabels()
-    {
-        return[
-            'id_authors' => 'ID',
-            'surname' => 'Surname',
-            'name' => 'Name',
-            'middle_name' => 'Middle Name',
-            'birthday' => 'Birthday',
-            'date_death' => 'Date Death',
         ];
     }
 }

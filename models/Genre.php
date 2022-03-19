@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use yii\db\ActiveRecord;
@@ -13,16 +14,8 @@ class Genre extends ActiveRecord
 
     public function rules()
     {
-        return[
+        return [
             [['name'], 'required'],
-        ];
-    }
-    
-    public function attributeLabels()
-    {
-        return[
-            'id_genre' => 'ID',
-            'name' => 'Name',
         ];
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use yii\db\ActiveRecord;
@@ -15,8 +16,8 @@ class Books extends ActiveRecord
 
     public function rules()
     {
-        return[
-            [['name'], 'required'],
+        return [
+            [['name', 'year_writing'], 'required'],
             [['year_writing'], 'date', 'format' => 'php:Y-m-d'],
             ['findtitle', 'required']
         ];
@@ -24,23 +25,11 @@ class Books extends ActiveRecord
 
     public function getAuthors()
     {
-        return $this -> hasOne(Authors::className(), ['id_authors' => 'id_a']);
+        return $this->hasOne(Authors::className(), ['id_authors' => 'id_a']);
     }
 
     public function getGenre()
     {
-        return $this -> hasOne(Genre::className(), ['id_genre' => 'id_a']);
-    }
-    
-    public function attributeLabels()
-    {
-        return[
-            'id_book' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'year_writing' => 'Year Writing',
-            'id_a' => 'ID A',
-            'id_g' => 'ID G',
-        ];
+        return $this->hasOne(Genre::className(), ['id_genre' => 'id_a']);
     }
 }
