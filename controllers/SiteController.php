@@ -10,6 +10,8 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\EntryForm;
+use app\models\Signup;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -20,14 +22,14 @@ class SiteController extends Controller
     {
         return $this->render('say', ['message' => $message]);
     }
-    
+
     public function actionEntry()
     {
         $model = new EntryForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             // данные в $model удачно проверены
             // делаем что-то полезное с $model ...
-             return $this->render('entry-confirm', ['model' => $model]);
+            return $this->render('entry-confirm', ['model' => $model]);
         } else {
             // либо страница отображается первый раз, либо есть ошибка в данных
             return $this->render('entry', ['model' => $model]);
@@ -115,6 +117,25 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionSignup()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $model = new Signup();
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $user = new User();
+            $user->username = $model->username;
+            //$user->password = \Yii::$app->security->generatePasswordHash($model->password);
+            $user->password = $model->password;
+            if ($user->save()) {
+                return $this->goHome();
+            }
+        }
+
+        return $this->render('signup', compact('model'));
     }
 
     /**
