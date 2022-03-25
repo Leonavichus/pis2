@@ -14,10 +14,12 @@ class AppAdminController extends Controller
                 'access' => [
                     'class' => AccessControl::className(),
                     'rules' => [
-                        'allow' => true,
-                        'roles' => ['@']
-                    ]
-                ]
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
             ];
     }
 }
