@@ -75,7 +75,11 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        $password_hash = Yii::$app->security->generatePasswordHash($password);
-        return Yii::$app->security->validatePassword($password, $password_hash);
+        return yii::$app->getSecurity()->validatePassword($password, $this->password);
+    }
+
+    public function generatePasswordHash()
+    {
+        $this->password = yii::$app->getSecurity()->generatePasswordHash($this->password);
     }
 }

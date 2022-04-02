@@ -3,8 +3,9 @@
 namespace app\models;
 
 use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class Signup extends Model
+class Signup extends ActiveRecord
 {
     public $username;
     public $password;
